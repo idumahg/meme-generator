@@ -13,5 +13,8 @@ class QuoteModel:
 
     def __repr__(self):
         """Returns a printable representation of the class"""
-        return f'"{self.body}" - {self.author}'
+        if self.body[0] == '"':
+            return f'{self.body} - {self.author}'
+        else:
+            return f'"{self.body}" - {self.author}'
 

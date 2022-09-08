@@ -32,7 +32,7 @@ class PDFIngestor(IngestorInterface):
             raise Exception('File format not supported')
 
         tmp = f'./tmp/{str(uuid.uuid4())}.txt'  # temporary file to be deleted
-        subprocess.run(['pdftotext', path, tmp])
+        subprocess.run(['pdftotext', '-layout', path, tmp])
 
         with open(tmp, "r") as f:
             quotes = []
