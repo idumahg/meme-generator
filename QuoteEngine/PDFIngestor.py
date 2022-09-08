@@ -31,6 +31,9 @@ class PDFIngestor(IngestorInterface):
         if not cls.can_ingest(path):
             raise Exception('File format not supported')
 
+        if not os.path.exists('./tmp'):
+            os.mkdir('./tmp')
+
         tmp = f'./tmp/{str(uuid.uuid4())}.txt'  # temporary file to be deleted
         subprocess.run(['pdftotext', '-layout', path, tmp])
 
