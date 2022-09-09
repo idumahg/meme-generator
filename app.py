@@ -1,6 +1,7 @@
 """A basic flask server code for web interface."""
 import random
 import os
+import PIL
 import requests
 from flask import Flask, render_template, request
 from QuoteEngine import Ingestor
@@ -61,16 +62,19 @@ def meme_post():
     image_url = request.form['image_url']
     tmp = f'./tmp/{random.randint(0, 100000000)}.jpg'
 
-    img_content = requests.get(image_url, stream=True).content
-    with open(tmp, 'wb') as img:
-        img.write(img_content)
+    try:
+        img_content = requests.get(image_url, stream=True).content
+        with open(tmp, 'wb') as img:
+            img.write(img_content)
 
-    quote_body = request.form['body']
-    quote_author = request.form['author']
-    path = meme.make_meme(tmp, quote_body, quote_author)
-    os.remove(tmp)
-
-    return render_template('meme.html', path=path)
+        quote_body = request.form['body']
+        quote_author = request.form['author']
+        path = meme.make_meme(tmp, quote_body, quote_author)
+        os.remove(tmp)
+        return render_template('meme.html', path=path)
+    except (requests.exceptions.ConnectionError, PIL.UnidentifiedImageError):
+        os.remove(tmp)
+        return render_template('meme_error.html')
 
 
 if __name__ == "__main__":
