@@ -45,9 +45,10 @@ class MemeEngine:
             draw = ImageDraw.Draw(img)
             font = ImageFont.truetype('./fonts/arial.ttf', 20)
             message = repr(QuoteModel(text, author))
-            message = "\n".join(textwrap.wrap(message, width=40))
-            x = random.randint(5, width//4)
-            y = random.randrange(5, height-50)
+            message = "\n".join(textwrap.wrap(message,
+                                              width=40))  # from stack exchange
+            x = random.randint(5, width // 4)
+            y = random.randrange(5, height - 50)
             draw.text((x, y), message,
                       font=font, fill='black', align='center')
 
