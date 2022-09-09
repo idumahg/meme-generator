@@ -1,7 +1,8 @@
+"""A basic flask server code for web interface."""
 import random
 import os
 import requests
-from flask import Flask, render_template, abort, request
+from flask import Flask, render_template, request
 from QuoteEngine import Ingestor
 from MemeEngine import MemeEngine
 
@@ -11,8 +12,7 @@ meme = MemeEngine('./static')
 
 
 def setup():
-    """
-    Load all necessary resources
+    """Load all necessary resources.
 
     Parameters (None)
 
@@ -20,7 +20,6 @@ def setup():
         quotes (List): list of quotes from supported file type.
         imgs (List): list of images to be manipulated.
     """
-
     quote_files = ['./_data/DogQuotes/DogQuotesTXT.txt',
                    './_data/DogQuotes/DogQuotesDOCX.docx',
                    './_data/DogQuotes/DogQuotesPDF.pdf',
@@ -43,7 +42,7 @@ quotes, imgs = setup()
 
 @app.route('/')
 def meme_rand():
-    """ Generate a random meme """
+    """Generate a random meme."""
     quote = random.choice(quotes)
     img = random.choice(imgs)
     path = meme.make_meme(img, quote.body, quote.author)
@@ -52,14 +51,13 @@ def meme_rand():
 
 @app.route('/create', methods=['GET'])
 def meme_form():
-    """ User input for meme information """
+    """User input for meme information."""
     return render_template('meme_form.html')
 
 
 @app.route('/create', methods=['POST'])
 def meme_post():
-    """ Create a user defined meme """
-
+    """Create a user defined meme."""
     image_url = request.form['image_url']
     tmp = f'./tmp/{random.randint(0, 100000000)}.jpg'
 

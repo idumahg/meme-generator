@@ -1,3 +1,4 @@
+"""A code that encapsulates all ingestors to give one interface for parsing."""
 from typing import List
 from .IngestorInterface import IngestorInterface
 from .DocxIngestor import DocxIngestor
@@ -8,21 +9,20 @@ from .QuoteModel import QuoteModel
 
 
 class Ingestor(IngestorInterface):
-    """
-    A class that encapsulates all the ingestors to provide one interface to load any supported file type.
-    """
-    files = [DocxIngestor, CSVIngestor, PDFIngestor, TextIngestor]  # List of files to be parsed.
+    """Ingestor class that can load any supported file type."""
+
+    files = [DocxIngestor, CSVIngestor, PDFIngestor, TextIngestor]
 
     @classmethod
     def parse(cls, path: str) -> List[QuoteModel]:
         """
-        A class method to parse files from any supported file type
+        Class method to parse files from any supported file type.
 
         Parameters:
             path (str): The path to the files to be ingested
 
         Returns:
-            quotes (List): A list containing quotes from the selected file type.
+            quotes (List): A list of quotes from the selected file type.
         """
         for file in cls.files:
             if file.can_ingest(path):

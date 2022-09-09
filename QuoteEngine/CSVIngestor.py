@@ -1,3 +1,4 @@
+"""A code to ingest and parse csv files."""
 import pandas as pd
 from typing import List
 from .QuoteModel import QuoteModel
@@ -5,16 +6,14 @@ from .IngestorInterface import IngestorInterface
 
 
 class CSVIngestor(IngestorInterface):
-    """
-    A class to ingest CSV files. This class inherits the IngestorInterface abstract class.
-    """
+    """A child class to ingest CSV files."""
 
     allowed_extensions = ['csv']  # allowed extension for the CSVIngestor class
 
     @classmethod
     def parse(cls, path: str) -> List[QuoteModel]:
         """
-        A class method to parse lines from csv files.
+        Class method to parse lines from csv files.
 
         Parameters:
             path (str): The path to the files to be ingested
@@ -25,7 +24,6 @@ class CSVIngestor(IngestorInterface):
         Returns:
             quotes (List): A list containing quotes from csv files.
         """
-
         if not cls.can_ingest(path):
             raise Exception('file format not supported')
 

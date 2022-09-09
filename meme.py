@@ -1,3 +1,4 @@
+"""A code to generate meme for any image and quote."""
 import os
 import random
 import argparse
@@ -8,7 +9,7 @@ from MemeEngine import MemeEngine
 
 def generate_meme(path=None, body=None, author=None):
     """
-    Generate a meme given an path, a body and an author
+    Generate a meme given an path, a body and an author.
 
     Parameters:
         path (str): The path to the image to be manipulated.
@@ -18,7 +19,6 @@ def generate_meme(path=None, body=None, author=None):
     Returns:
         path (str): Path to the text-inscribed image.
     """
-
     if path is None:
         images = "./_data/photos/dog/"
         imgs = []

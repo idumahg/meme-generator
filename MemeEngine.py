@@ -1,18 +1,21 @@
+"""A code to manipulate and draw text onto images."""
 from PIL import Image, ImageDraw, ImageFont
 from QuoteEngine import QuoteModel
 import os
 import random
+import textwrap
 
 
 class MemeEngine:
     """
     A Meme Engine class to manipulate and insert text onto images.
-    
+
     Attributes:
         out_dir (str): the directory to save output image.
     """
 
     def __init__(self, out_dir):
+        """Initialize the memeEngine class attribute."""
         self.out_dir = out_dir
 
         if not os.path.exists(self.out_dir):
@@ -20,7 +23,7 @@ class MemeEngine:
 
     def make_meme(self, img_path, text, author, width=500) -> str:
         """
-        A make meme Module to save manipulated image to output directory.
+        Make meme Module to save manipulated image to output directory.
 
         Parameters:
             img_path (str): The file location for input image.
@@ -31,7 +34,6 @@ class MemeEngine:
         Returns:
             save_path (str): The file path to the output image.
         """
-
         img = Image.open(img_path)
 
         if width is not None:
@@ -43,8 +45,13 @@ class MemeEngine:
             draw = ImageDraw.Draw(img)
             font = ImageFont.truetype('./fonts/arial.ttf', 20)
             message = repr(QuoteModel(text, author))
-            draw.text((10, 30), message, font=font, fill='black')
+            message = "\n".join(textwrap.wrap(message, width=40))
+            x = random.randint(5, width//4)
+            y = random.randrange(5, height-50)
+            draw.text((x, y), message,
+                      font=font, fill='black', align='center')
 
         save_path = f'{self.out_dir}/{str(random.randint(10000, 99999))}.jpg'
         img.save(save_path)
+
         return save_path

@@ -1,3 +1,6 @@
+"""A code to give a printable representation of a quote."""
+
+
 class QuoteModel:
     """
     A class to encapsulate the body and author of a quote.
@@ -8,13 +11,13 @@ class QuoteModel:
     """
 
     def __init__(self, body, author):
+        """Initialize the QuoteModel class."""
         self.body = body
         self.author = author
 
     def __repr__(self):
-        """Returns a printable representation of the class"""
+        """Return a printable representation of the class."""
         if self.body[0] == '"':
             return f'{self.body} - {self.author}'
         else:
             return f'"{self.body}" - {self.author}'
-

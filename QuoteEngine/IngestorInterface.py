@@ -1,18 +1,18 @@
+"""A code that defines an abstract base class."""
 from abc import ABC, abstractmethod
 from typing import List
 from .QuoteModel import QuoteModel
 
 
 class IngestorInterface(ABC):
-    """
-    An abstract base class that defines how children classes should be defined.
-    """
+    """An abstract base class that provides template for children classes."""
+
     allowed_extensions = []
 
     @classmethod
     def can_ingest(cls, path: str) -> bool:
         """
-        A class method to check if file extension is in allowed extensions.
+        Class method to check if file extension is in allowed extensions.
 
         Parameters:
             path (str): path to the file to be ingested
@@ -26,7 +26,5 @@ class IngestorInterface(ABC):
     @classmethod
     @abstractmethod
     def parse(cls, path: str) -> List[QuoteModel]:
-        """
-        Abstract method that will be defined in children classes.
-        """
+        """Abstract method that will be defined in children classes."""
         pass
