@@ -15,7 +15,7 @@ The quotes come from a variety of file types (PDF, TXT, DOCX and TXT). Hence we 
 
 There are sample quotes and images of Xander the pup in the data folder. However, the app also accepts dynamic user input through a command-line tool and a web service. 
 
-With the fask web service, users can provide any image, together with a quote (with a body and author), and get an image with the quote inscribed onto the image.
+With the flask web service, users can provide any image, together with a quote (with a body and author), and get an image with the quote inscribed onto the image.
 
 ## Instruction for setting up
 * Install the dependencies by running 
