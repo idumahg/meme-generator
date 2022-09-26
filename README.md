@@ -29,7 +29,7 @@ With the flask web service, users can provide any image, together with a quote (
   This will provide a link where the server is located. The link will lead you to web service, where you caneither decide to generate a random image or create an image. To create an image, you will need to provide the image url, a quote and an author. 
 * The images will be saved in the static folder.
 * You can also get a random image by running the *meme.py* code in command line as described below.
-* 
+
 ## General info
 * Quote Engine: This module is composed of classes that ingest different file types that contain quotes. It contains:
   * An abstract base class **IngestorInterface** that contains class method signature.
